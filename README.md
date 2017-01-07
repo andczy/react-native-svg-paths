@@ -1,83 +1,24 @@
-# react-native-qrscanner-kit
+# react-native-svg-paths
+基于[react-native-svg](https://github.com/react-native-community/react-native-svg)
 
-基于[react-native-camera](https://github.com/chinaczy/react-native-camera)
-
-  增加扫描覆盖界面 ，扫描出结果后，不再继续解析二维码。通过调用shouldQR来再次开启继续解析二维码。
-  
-  
+  用于显示svg图片（svg图片内容将path内容转为json数组)。
 ## Getting started
-![](demo/ui.png).
-### Requirements
-1. JDK >= 1.7 (if you run on 1.6 you will get an error on "_cameras = new HashMap<>();")
-2. With iOS 10 and higher you need to add the "Privacy - Camera Usage Description" key to the info.plist of your project. This should be found in 'your_project/ios/your_project/Info.plist'.  Add the following code:
-```
-<key>NSCameraUsageDescription</key>
-<string>Your message to user when the camera is accesseded for the first time</string>
-
-<!-- Include this only if you are planning to use the camera roll -->
-<key>NSPhotoLibraryUsageDescription</key>
-<string>Your message to user when the photo library is accessed for the first time</string>
-
-<!-- Include this only if you are planning to use the microphone for video recording -->
-<key>NSMicrophoneUsageDescription</key>
-<string>Your message to user when the microsphone is accessed for the first time</string>
-```
+![](shot/run200.png).
 
 ### Mostly automatic install with react-native
-1. `npm install react-native-camera@https://github.com/chinaczy/react-native-camera.git --save`
-2. `npm install react-native-qrscanner-kit`
-3. `react-native link react-native-camera`
-
-
-### Manual install
-#### iOS
-1. `npm install react-native-camera@https://github.com/lwansbrough/react-native-camera.git --save`
-2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-3. Go to `node_modules` ➜ `react-native-camera` and add `RCTCamera.xcodeproj`
-4. In XCode, in the project navigator, select your project. Add `libRCTCamera.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-5. Click `RCTCamera.xcodeproj` in the project navigator and go the `Build Settings` tab. Make sure 'All' is toggled on (instead of 'Basic'). In the `Search Paths` section, look for `Header Search Paths` and make sure it contains both `$(SRCROOT)/../../react-native/React` and `$(SRCROOT)/../../../React` - mark both as `recursive`.
-5. Run your project (`Cmd+R`)
-
-
-#### Android
-1. `npm install react-native-camera@https://github.com/lwansbrough/react-native-camera.git --save`
-2. Open up `android/app/src/main/java/[...]/MainApplication.java
-  - Add `import com.lwansbrough.RCTCamera.RCTCameraPackage;` to the imports at the top of the file
-  - Add `new RCTCameraPackage()` to the list returned by the `getPackages()` method. Add a comma to the previous item if there's already something there.
-
-3. Append the following lines to `android/settings.gradle`:
-
-	```
-	include ':react-native-camera'
-	project(':react-native-camera').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-camera/android')
-	```
-
-4. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-
-	```
-    compile project(':react-native-camera')
-	```
-
+1. `npm install react-native-svg-paths`
+2. `react-native link react-native-svg`
 
 ## Usage
 ```
-import Scan from 'react-native-qrscanner-kit' ;
+import SvgPath from 'react-native-svg-paths' ;
 ...
-scanResult(data , callback){
-    Alert.alert( "qrcode result " ,  data.data , [{text:"ok" , onPress:()=>callback()}],{cancelable:false}) ; 
-  }
-  render() {
-    
-    return (
-      <View style={{flex:1 }}>
-        <Scan
-          
-          onBarCodeRead={this.scanResult.bind(this)}
-          />
-        
-      </View>
-    );
-  }
-}
+<SvgPath
+	viewBox="0 0 1024 1024"//设置为原svg图的viewBox值，默认0 0 1024 1024
+        width={20}
+        height={20}
+        pathD={require("../../svg/gift.json")} //可以是svg的d值字符串；[{"d":"xxx},{"d":"yyy"}],	[{"d":"xxx,"fill":"0xff0000"},				{"d":"yyy","fill":"0xff0000"}]
+	fillColor="#999" //如果svg的path没有fill字段，可通过此设置图片颜色。
+        />
 ```
-[more about Camera go to](https://github.com/chinaczy/react-native-camera)
+[more about svg go to](https://github.com/chinaczy/react-native-svg)
