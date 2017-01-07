@@ -1,0 +1,31 @@
+{
+  "name": "react-native-svg-paths",
+  "version": "1.0.1",
+  "description": "show svg picture by path.",
+  "main": "SvgPath.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chinaczy/react-native-svg-paths.git"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "ios",
+    "qrcode",
+    "qr",
+    "scanner",
+    "barcode"
+  ],
+  "author": "czy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chinaczy/react-native-svg-paths/issues"
+  },
+  "dependencies": {
+    "react-native-svg": "^4.4.1"
+  },
+  "homepage": "https://github.com/chinaczy/react-native-svg-paths#readme"
+}
